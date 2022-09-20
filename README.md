@@ -25,9 +25,8 @@ connect to ECR and perform the build.
 The method to generate and use the secret is below:
 
  first on the kubernetes node in the cluster do the following:
- (the below is not formatting correctly for some reason)
  
-aws ecr get-login-password --region <insert your region> | docker login --username AWS --password-stdin <youraccountname>.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region <insert your region> | docker login --username AWS --password-stdin \<youraccountname\>.dkr.ecr.us-east-1.amazonaws.com
 
 Then once that is done you can do the following:
 
