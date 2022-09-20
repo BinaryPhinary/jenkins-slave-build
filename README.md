@@ -34,4 +34,6 @@ Then once that is done you can do the following:
 kubectl create secret generic regcred \
 --from-file=.dockerconfigjson=/home/ec2-user/.docker/config.json> \
 --type=kubernetes.io/dockerconfigjson
+ 
+regcred is then used in the pod setup within the jenkins kubernetes plugin.
 
