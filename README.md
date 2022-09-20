@@ -14,3 +14,16 @@ Another interesting thing to note about this build - is that much of the configu
 In this case - I have chosen to use ECR repo in AWS to pull the image.  This required a secret to be generated on the Kubernetes cluster,
 which allows the cluster to access ECR.  In addition, the Master also has an AWS account tied to it in a secret that is used in order to
 connect to ECR and perform the build.
+
+The method to do that is below:
+
+ first on the kubernetes node in the cluster do the following:
+ 
+ aws ecr get-login-password --region <insert your region> | docker login --username AWS --password-stdin <youraccountname>.dkr.ecr.us-east-1.amazonaws.com
+
+Then once that is done you can do the following:
+
+kubectl create secret generic regcred \
+--from-file=.dockerconfigjson=/home/ec2-user/.docker/config.json> \
+--type=kubernetes.io/dockerconfigjson
+
