@@ -6,6 +6,14 @@ pipeline {
      options {
         skipStagesAfterUnstable()
     }
+
+environment 
+    {
+        PROJECT = 'jenkins_slave'
+        ECRURL = 'https://633706706076.dkr.ecr.us-east-1.amazonaws.com'
+        ECRCRED = 'ecr:us-east-1:aws-main-admin-user'
+    }
+
 stages { 
     stage('Clone repository') { 
             steps { 
@@ -24,9 +32,9 @@ stages {
      stage('Deploy') {
             steps {
                 script{
-                        docker.withRegistry('https://633706706076.dkr.ecr.us-east-1.amazonaws.com/jenkins-slave-pipeline', 'ecr:us-east-1:aws-main-admin-user') {
-                        jenkins_slave.push("${env.BUILD_NUMBER}")
-                        jenkins_slave.push("latest")
+                        docker.withRegistry(ECRURL, ECRCRED) {
+
+                        docker.image(PROJECT).push("latest")
                 }
             }
         }
