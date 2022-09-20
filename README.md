@@ -5,3 +5,6 @@ spin up a new Jenkins slave container.  This allows for scalability.  In additio
 the cluster since its a member of the cluster, and has been granted appropriate permissions (see Jenkins Master Build Repo for that)
 
 This method of running Jenkins within Kubernetes of course relies on the Jenkins Kubernetes plugin.
+
+The jenkins-slave file is an official script from jenkins that is required for the DockerImage build.  It will incorporate the script.
+Without the script being copied into the DockerImage - the build will not work.
