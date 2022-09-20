@@ -22,11 +22,11 @@ First - a secret needs to be generated on the Kubernetes cluster, which allows t
 In addition, the Master also has an AWS account tied to it in a secret in the Jenkins UI (not on the cluster) that is used in order to
 connect to ECR and perform the build.
 
-The method to do generate and use the secret is below:
+The method to generate and use the secret is below:
 
  first on the kubernetes node in the cluster do the following:
  
- aws ecr get-login-password --region <insert your region> | docker login --username AWS --password-stdin <youraccountname>.dkr.ecr.us-east-1.amazonaws.com
+ aws ecr get-login-password --region <insert your region> | docker login --username AWS --password-stdin  <youraccountname>.dkr.ecr.us-east-1.amazonaws.com
 
 Then once that is done you can do the following:
 
